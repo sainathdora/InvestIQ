@@ -4,3 +4,11 @@
 body{
   font-size: 2rem;
 }
+.Container{
+  background-image: url("../../public/assets/HomeBackground.jpg");
+  height: 100vh;
+  background-size: cover;
+  width: 100%;
+  background-repeat: no-repeat;
+  filter: blur(1rem);
+}
