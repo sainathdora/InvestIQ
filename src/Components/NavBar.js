@@ -1,7 +1,11 @@
-export default function NavBar() {
+import Link from "next/link";
+
+export default function NavBar({ bgcolor, textcolor }) {
   return (
     <>
-      <nav className="z-2 bg-transparent bg-slate-800 text-white flex sm:text-xl lg:text-3xl">
+      <nav
+        className={`bg-${bgcolor}-700 text-${textcolor} flex sm:text-xl lg:text-3xl`}
+      >
         <h2
           style={{
             width: "50%",
@@ -16,9 +20,11 @@ export default function NavBar() {
             width: "50%",
           }}
         >
-          <li className="hover:text-gray-300 hover:cursor-pointer">Home</li>
           <li className="hover:text-gray-300 hover:cursor-pointer">
-            Get Started
+            <Link href="/">Home</Link>
+          </li>
+          <li className="hover:text-gray-300 hover:cursor-pointer">
+            <Link href="/portfolio">Get Started</Link>
           </li>
         </ul>
       </nav>

@@ -10,7 +10,7 @@ export default function Home() {
         className="container min-w-screen sm:min-h-screen bg-[url('../../public/assets/Background3.svg')] bg-center
       bg-cover"
       >
-        <NavBar />
+        <NavBar bgcolor={"transparent"} textcolor={"white"} />
         <Hero />
       </div>
     </>
