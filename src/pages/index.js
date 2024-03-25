@@ -2,6 +2,7 @@ import NavBar from "@/Components/NavBar";
 import Image from "next/image";
 import BackgroundImg from "../../public/assets/Background3.svg";
 import Hero from "@/Components/Hero";
+import Footer from "@/Components/Footer";
 export default function Home() {
   return (
     <>
@@ -13,6 +14,7 @@ export default function Home() {
       />
       <NavBar />
       <Hero />
+      <Footer />
     </>
   );
 }

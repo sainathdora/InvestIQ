@@ -1,4 +1,7 @@
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import HeroImage from "../../public/assets/Hero.png";
+import Image from "next/image";
+import classes from "./Hero.module.css";
 export default function Hero() {
   const [typeEffect] = useTypewriter({
     words: ["Optimize", "Diversification", "Efficient Frontier", "Efficiency"],
@@ -14,9 +17,9 @@ export default function Hero() {
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-slate-800">
               Portfolio <span className="text-white">{typeEffect}</span>
             </h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              From checkout to global sales tax compliance, companies around the
-              world use Flowbite to simplify their payment stack.
+            <p class="max-w-2xl mb-6 font-light text-white lg:mb-8 md:text-lg lg:text-xl ">
+              Unlock Your Portfolio&apos;s Potential with Modern Precision:
+              Empowering Investors through Optimized Strategies!
             </p>
             <a
               href="#"
@@ -44,10 +47,8 @@ export default function Hero() {
             </a>
           </div>
           <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-              alt="mockup"
-            />
+            {/* Image */}
+            <Image src={HeroImage} alt="" className={classes["floating"]} />
           </div>
         </div>
       </section>
