@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import StockButton from "./Button/StockButton";
+import { ST } from "next/dist/shared/lib/utils";
 export default function StockDisplay() {
   const [stock, setStock] = useState("");
   const [StocksOnScreen, setStocksOnScreen] = useState([]);
@@ -48,7 +50,7 @@ export default function StockDisplay() {
     <>
       <form className="max-w-sm mx-auto">
         <label
-          for="countries"
+          for="Stocks"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
           Pick Your Stocks
@@ -56,7 +58,7 @@ export default function StockDisplay() {
         <select
           value={stock}
           onChange={setStockHandler}
-          id="countries"
+          id="Stocks"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option>Pick Stocks</option>
@@ -70,12 +72,12 @@ export default function StockDisplay() {
         </select>
       </form>
       {StocksOnScreen.length > 0 && (
-        <ul className="flex justify-evenly mx-auto">
+        <ul className="my-5">
           {StocksOnScreen.map((i) => {
             return (
-              <li key={i.id} className="bg-sky-300 p-3 rounded">
+              <StockButton key={i.id}>
                 {i.name}
-              </li>
+              </StockButton>
             );
           })}
         </ul>
