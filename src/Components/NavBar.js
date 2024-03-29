@@ -1,16 +1,18 @@
 import Link from "next/link";
-
+import { useState } from "react";
 export default function NavBar({ bgcolor, textcolor }) {
   return (
     <>
       <nav
-        className={`bg-${bgcolor}-700 text-${textcolor} flex sm:text-xl lg:text-3xl`}
+        className={`${
+          bgcolor ? "bg-sky-400" : "bg-transparent"
+        } flex sm:text-xl lg:text-3xl text-white min-h-4 py-5`}
       >
         <h2
           style={{
             width: "50%",
           }}
-          className="md:text-center font-bold sm:text-left"
+          className="md:text-center font-bold sm:text-left "
         >
           InvestIQ
         </h2>
