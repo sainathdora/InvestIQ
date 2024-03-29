@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import StockButton from "./Button/StockButton";
-import { ST } from "next/dist/shared/lib/utils";
+import {
+  InsertStockToStockArray,
+  DeleteStockFromStockArray,
+} from "@/util/helper";
 export default function StockDisplay() {
-  const [stock, setStock] = useState("");
-  const [StocksOnScreen, setStocksOnScreen] = useState([]);
+  let [DisplayStock, setDisplayStocks] = useState([]);
   let [stocksinfo, setStockInfo] = useState([
     {
       id: 1,
@@ -23,29 +25,21 @@ export default function StockDisplay() {
     },
   ]);
 
-  function setStockHandler(e) {
-    console.log("e.target.value: ", e.target.value);
-    setStock(e.target.value);
-    // find key of selected stock
-    console.log("stocksinfo: ", stocksinfo);
-    let foundstock = stocksinfo.find((i) => {
+  function onChangeHandler(e) {
+    // remove the stock from stocksarray
+    let Stock_To_Delete = stocksinfo.find((i) => {
       return i.name == e.target.value;
     });
-    console.log("foundstock: ", foundstock);
-    setStocksOnScreen((prev) => [
-      ...prev,
-      {
-        id: foundstock["id"],
-        name: e.target.value,
-      },
-    ]);
-    setStockInfo((prev) => {
-      let b = prev.filter((i) => {
-        return i.name !== e.target.value;
-      });
-      return b;
-    });
+    let DeltededInfo = DeleteStockFromStockArray(
+      stocksinfo,
+      DisplayStock,
+      Stock_To_Delete
+    );
+    console.log("delted: ", DeltededInfo);
+    setStockInfo(DeltededInfo["Stock_Array"]);
+    setDisplayStocks(DeltededInfo["DisplayStocks"]);
   }
+
   return (
     <>
       <form className="max-w-sm mx-auto">
@@ -56,9 +50,8 @@ export default function StockDisplay() {
           Pick Your Stocks
         </label>
         <select
-          value={stock}
-          onChange={setStockHandler}
           id="Stocks"
+          onChange={onChangeHandler}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option>Pick Stocks</option>
@@ -71,17 +64,19 @@ export default function StockDisplay() {
           })}
         </select>
       </form>
-      {StocksOnScreen.length > 0 && (
-        <ul className="my-5">
-          {StocksOnScreen.map((i) => {
-            return (
-              <StockButton key={i.id}>
-                {i.name}
-              </StockButton>
-            );
-          })}
-        </ul>
-      )}
+      {DisplayStock.map((i) => {
+        return (
+          <StockButton
+            key={i.id}
+            setDisplayStocks={setDisplayStocks}
+            setStockInfo={setStockInfo}
+            DisplayStock={DisplayStock}
+            stocksinfo={stocksinfo}
+          >
+            {i.name}
+          </StockButton>
+        );
+      })}
     </>
   );
 }
