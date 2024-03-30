@@ -3,27 +3,16 @@ import StockButton from "./Button/StockButton";
 import {
   InsertStockToStockArray,
   DeleteStockFromStockArray,
+  FetchStockData,
 } from "@/util/helper";
 export default function StockDisplay() {
+  useEffect(() => {
+    FetchStockData().then((d) => {
+      setStockInfo(d);
+    });
+  }, []);
   let [DisplayStock, setDisplayStocks] = useState([]);
-  let [stocksinfo, setStockInfo] = useState([
-    {
-      id: 1,
-      name: "TCS",
-    },
-    {
-      id: 2,
-      name: "Bajaj",
-    },
-    {
-      id: 3,
-      name: "Reliance",
-    },
-    {
-      id: 4,
-      name: "Adani Power",
-    },
-  ]);
+  let [stocksinfo, setStockInfo] = useState([]);
 
   function onChangeHandler(e) {
     // remove the stock from stocksarray
@@ -64,19 +53,28 @@ export default function StockDisplay() {
           })}
         </select>
       </form>
-      {DisplayStock.map((i) => {
-        return (
-          <StockButton
-            key={i.id}
-            setDisplayStocks={setDisplayStocks}
-            setStockInfo={setStockInfo}
-            DisplayStock={DisplayStock}
-            stocksinfo={stocksinfo}
-          >
-            {i.name}
-          </StockButton>
-        );
-      })}
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {DisplayStock.map((i) => {
+          return (
+            <StockButton
+              key={i.id}
+              setDisplayStocks={setDisplayStocks}
+              setStockInfo={setStockInfo}
+              DisplayStock={DisplayStock}
+              stocksinfo={stocksinfo}
+            >
+              {i.name}
+            </StockButton>
+          );
+        })}
+      </ul>
+      {DisplayStock.length > 0 && (
+        <section className="flex justify-center">
+          <button className="bg-slate-600 text-white rounded-lg p-3 mx-auto">
+            Optimize PortFolio
+          </button>
+        </section>
+      )}
     </>
   );
 }

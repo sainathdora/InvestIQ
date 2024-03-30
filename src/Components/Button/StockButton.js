@@ -10,7 +10,6 @@ export default function StockButton({
   DisplayStock,
 }) {
   function removeStockHandler() {
-    console.log("hs");
     // Insert to stock array
     let Stock_to_insert = DisplayStock.find((i) => {
       return i.name == children;
@@ -27,8 +26,8 @@ export default function StockButton({
   }
   return (
     <>
-      <span className="bg-sky-300 rounded-lg m-3 p-4">
-        {children}
+      <span className="bg-sky-300 rounded-lg m-3 p-4 flex justify-between">
+        <p>{children}</p>
         <button
           className="bg-red-600 text-white px-2 remove rounded-md"
           onClick={removeStockHandler}

@@ -23,5 +23,13 @@ export function DeleteStockFromStockArray(
   });
   //   add that stock to Display stock
   DisplayStocks = [...DisplayStocks, Stock_to_be_deleted];
-  return {Stock_Array, DisplayStocks};
+  return { Stock_Array, DisplayStocks };
+}
+
+// fetch data from api(stocks data)
+
+export async function FetchStockData() {
+  const res = await fetch("/api/InfoHandler");
+  const resjson = res.json();
+  return resjson;
 }
