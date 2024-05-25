@@ -17,7 +17,7 @@ export default function PlotGraph({ plotNo }) {
     setTimeout(() => {
       setTimer(true);
     }, fact(plotNo) * 1000);
-  }, []);
+  });
 
   if (plotNo == 2 && timer) {
     return (
