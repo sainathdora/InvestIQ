@@ -8,9 +8,11 @@ export default function StockButton({
   setStockInfo,
   stocksinfo,
   DisplayStock,
+  setClickBtn,
 }) {
   function removeStockHandler() {
     // Insert to stock array
+    setClickBtn(false);
     let Stock_to_insert = DisplayStock.find((i) => {
       return i.name == children;
     });

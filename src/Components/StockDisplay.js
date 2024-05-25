@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PlotGraph from "./MBT-4-stocks/PlotGraph";
 import StockButton from "./Button/StockButton";
 import {
   InsertStockToStockArray,
@@ -13,7 +14,8 @@ export default function StockDisplay() {
   }, []);
   let [DisplayStock, setDisplayStocks] = useState([]);
   let [stocksinfo, setStockInfo] = useState([]);
-
+  let [ClickBtn, setClickBtn] = useState(false);
+  console.log("click btn = ", ClickBtn);
   function onChangeHandler(e) {
     // remove the stock from stocksarray
     let Stock_To_Delete = stocksinfo.find((i) => {
@@ -28,7 +30,9 @@ export default function StockDisplay() {
     setStockInfo(DeltededInfo["Stock_Array"]);
     setDisplayStocks(DeltededInfo["DisplayStocks"]);
   }
-
+  function ShowGraph() {
+    setClickBtn(true);
+  }
   return (
     <>
       <form className="max-w-sm mx-auto">
@@ -62,19 +66,26 @@ export default function StockDisplay() {
               setStockInfo={setStockInfo}
               DisplayStock={DisplayStock}
               stocksinfo={stocksinfo}
+              setClickBtn={setClickBtn}
             >
               {i.name}
             </StockButton>
           );
         })}
       </ul>
-      {DisplayStock.length > 0 && (
+      {DisplayStock.length > 1 && ClickBtn === false ? (
         <section className="flex justify-center">
-          <button className="bg-slate-600 text-white rounded-lg p-3 mx-auto">
+          <button
+            className="bg-slate-600 text-white rounded-lg p-3 mx-auto"
+            onClick={ShowGraph}
+          >
             Optimize PortFolio
           </button>
         </section>
+      ) : (
+        ""
       )}
+      {ClickBtn && <PlotGraph plotNo={DisplayStock.length} />}
     </>
   );
 }

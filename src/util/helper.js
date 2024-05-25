@@ -33,3 +33,4 @@ export async function FetchStockData() {
   const resjson = res.json();
   return resjson;
 }
+
