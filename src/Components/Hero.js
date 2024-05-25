@@ -2,6 +2,7 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 import HeroImage from "../../public/assets/Hero.png";
 import Image from "next/image";
 import classes from "./Hero.module.css";
+import Link from "next/link";
 export default function Hero() {
   const [typeEffect] = useTypewriter({
     words: ["Optimize", "Diversification", "Efficient Frontier", "Efficiency"],
@@ -39,12 +40,12 @@ export default function Hero() {
                 ></path>
               </svg>
             </a>
-            <a
+            <Link
               href="/portfolio"
               class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
               Get Started
-            </a>
+            </Link>
           </div>
           <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             {/* Image */}

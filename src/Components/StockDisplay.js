@@ -29,6 +29,7 @@ export default function StockDisplay() {
     console.log("delted: ", DeltededInfo);
     setStockInfo(DeltededInfo["Stock_Array"]);
     setDisplayStocks(DeltededInfo["DisplayStocks"]);
+    setClickBtn(false);
   }
   function ShowGraph() {
     setClickBtn(true);
